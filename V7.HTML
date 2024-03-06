@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leisure Time Carbon Footprint Calculator</title>
+</head>
+<body>
+    <h1>Leisure Time Carbon Footprint Calculator</h1>
+    <form id="carbonFootprintForm">
+        <label for="nonBusinessTrips">How many non-business trips do you take per year?</label><br>
+        <select id="nonBusinessTrips">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+        </select><br><br>
+
+        <label for="tripDuration">What is the average duration of your trips in days?</label><br>
+        <select id="tripDuration">
+            <option value="2">1-2</option>
+            <option value="7">5-7</option>
+            <option value="14">10-14</option>
+            <option value="21">14-21</option>
+        </select><br><br>
+
+        <label for="transportationMode">What is your preferred transportation mode for trips?</label><br>
+        <select id="transportationMode">
+            <option value="500">Airplane</option>
+            <option value="700">Ship</option>
+            <option value="900">Personal car</option>
+            <option value="1000">Other</option>
+        </select><br><br>
+
+        <label for="travelDistance">What is the average travel distance from your home to your destination?</label><br>
+        <select id="travelDistance">
+            <option value="10">Less than 100 miles</option>
+            <option value="50">100-500 miles</option>
+            <option value="100">500-1,000 miles</option>
+            <option value="250">More than 1,000 miles</option>
+            <option value="500">More than 2,500 miles</option>
+        </select><br><br>
+
+        <label for="destinationType">What is your most typical destination?</label><br>
+        <select id="destinationType">
+            <option value="10">Resort</option>
+            <option value="50">Theme Park</option>
+            <option value="100">Major city</option>
+            <option value="250">Park or other natural area</option>
+        </select><br><br>
+
+        <input type="submit" value="Calculate Carbon Footprint">
+    </form>
+
+    <div id="result"></div>
+
+    <script>
+        document.getElementById('carbonFootprintForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            // Retrieve values from form
+            const nonBusinessTrips = parseInt(document.getElementById('nonBusinessTrips').value);
+            const tripDuration = parseInt(document.getElementById('tripDuration').value);
+            const transportationMode = parseInt(document.getElementById('transportationMode').value);
+            const travelDistance = parseInt(document.getElementById('travelDistance').value);
+            const destinationType = parseInt(document.getElementById('destinationType').value);
+
+            // Calculate carbon footprint
+            const carbonFootprint = nonBusinessTrips * tripDuration * transportationMode * travelDistance * destinationType;
+
+            // Display result
+            document.getElementById('result').innerHTML = `<p>Your leisure time carbon footprint is: ${carbonFootprint} KgCO2 eq/year</p>`;
+        });
+    </script>
+</body>
+</html>
